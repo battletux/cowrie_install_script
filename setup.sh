@@ -11,7 +11,7 @@ sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password passwor
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password $mysql_root_pw'
 echo "Now to install the required packages."
 #if put error check in... if $? dont equal 0 then fail
-        apt-get install python-twisted python-crypto python-pyasn1 python-gmpy2 python-mysqldb python-zope.interface install git python-dev python-openssl openssh-server python-pyasn1 python-twisted authbind mysql-server python-mysqldb -y
+        apt-get install python-twisted python-crypto python-pyasn1 python-gmpy2 python-mysqldb python-zope.interface git python-dev python-openssl openssh-server python-pyasn1 python-twisted authbind mysql-server python-mysqldb -y
         
 # Now to create the cowrie user. The extension --gecos in the adduser bit stops chfn asking for finger info.
 echo "Creating honeypot user 'cowrie'."
