@@ -38,16 +38,19 @@ fi
 service ssh restart
 # create the cowrie user
 echo "Now to setup the MySQL user and database."
-mysql -u root -p"$mysql_root_pw" << EOF
-CREATE DATABASE cowrie;
-GRANT ALL ON cowrie.* TO cowrie@localhost IDENTIFIED BY ‘secret123’;
-EOF
+#mysql -u root -p"$mysql_root_pw" << EOF
+#CREATE DATABASE cowrie;
+#GRANT ALL ON cowrie.* TO cowrie@localhost IDENTIFIED BY 'secret123';
+#EOF
+mysql -h localhost -u "root" -p "${mysql_root_pw}" -e "CREATE DATABASE cowrie"
+mysql -h localhost -u "root" -p "${mysql_root_pw}" -e "GRANT ALL ON cowrie.* TO cowrie@localhost IDENTIFIED BY 'secret123'"
+
 
 #create the cowrie database
-mysql -u cowrie -p"secret123" << EOF2
+mysql -u cowrie -p"secret123" << EOF
 USE cowrie;
 source https://github.com/micheloosterhof/cowrie/blob/master/doc/sql/mysql.sql
-EOF2
+EOF
 
 
 echo "Now to install cowrie"
