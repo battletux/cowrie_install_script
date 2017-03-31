@@ -56,7 +56,7 @@ EOF
 echo "Now to install cowrie"
 
 IP=$(ifconfig eth0 | grep inet\ addr | cut -d':' -f2 | cut -d ' ' -f1)
-NODE=$(nslookup "$IP" | grep name\ \= | cut -d' ' -f3 | sed s/.$//)
+NODE=$(nslookup "$IP" | grep name\ = | cut -d' ' -f3 | sed s/.$//)
 HOST=$(echo "$NODE" | cut -d'.' -f1)
 
 sudo su - cowrie
